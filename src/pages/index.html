@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Productivfy</title>
+    <link rel="stylesheet" href="/src/styles/style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <div class="productivfy">
+            <h2>Productivfy <img src="/src/images/icon.png"></h2>
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Add New Task">
+                <button onclick="AddTask()">Add Task</button>
+            </div>
+            <ul id="list-container">
+            </ul>
+            <h4 id="total-tasks">Total Tasks: <span id="total-tasks-number">0</span></h4>
+            <br>
+            <div class="bulk-delete-container">
+                <h4>Bulk Delete (Experimental)</h4>
+                </br>
+                <button onclick="deleteAllTasks()">Delete All</button>
+            </div>
+        </div>
+    </div>
+    <script src="/src/js/script.js"></script>
 </body>
 </html>
