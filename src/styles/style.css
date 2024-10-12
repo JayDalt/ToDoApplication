@@ -9,23 +9,28 @@
     width: 100%;
     min-height: 100vh;
     background: linear-gradient(135deg, #153677, #4e085f);
-    padding: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .productivfy{    
     width: 100%;
     max-width: 540px;
     background: #fff;
-    margin: 100px auto 20px;
-    padding: 40px 30px 70px;
-    border-radius: 50px;
+    margin: 50px auto;
+    padding: 40px 30px;
+    border-radius: 30px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .productivfy h2{
     color: #002765;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    font-size: 24px;
 }
 
 .productivfy h2 img{
@@ -48,27 +53,39 @@ input{
     border: none;
     outline: none;
     background: transparent;
-    padding: 10px;
+    padding: 12px;
+    font-size: 16px;
 }
 
 button{
     border: none;
     outline: none;
-    padding: 16px 50px;
+    padding: 12px 40px;
     background: #ff5945;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 1000px;
+    border-radius: 50px;
+    transition: background-color 0.3s ease;
 }
 
-ul li{
+button:hover {
+    background-color: #ff4028;
+}
+
+ul li {
     list-style: none;
     font-size: 17px;
     padding: 12px 8px 12px 50px;
     user-select: none;
     cursor: pointer;
     position: relative;
+    background: #f9f9f9;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 ul li::before{
@@ -80,12 +97,13 @@ ul li::before{
     background-image: url(/src/images/unchecked.png);
     background-size: cover;
     background-position: center;
-    top: 12px;
+    top: 50%;
     left: 8px;
+    transform: translateY(-50%);
 }
 
 ul li.checked {
-    color: #555;
+    color: #888;
     text-decoration: line-through;
 }
 
@@ -93,36 +111,61 @@ ul li.checked::before{
     background-image: url(/src/images/checked.png);
 }
 
+ul li button.edit-btn{
+    background: #ff5945;
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+ul li button.edit-btn:hover{
+    background: #ff4028;
+}
+
 ul li span{
-    position: absolute;
-    right: 0;
-    top: 5px;
-    width: 40px;
-    height: 40px;
     font-size: 22px;
     color: #555;
-    line-height: 40px;
-    text-align: center;
-    border-radius: 50%;
+    padding-right: 10px;
+    cursor: pointer;
 }
+
 ul li span:hover{
-    background: #edeef0;
+    color: #ff5945;
 }
 
 #total-tasks{
     margin-top: 20px;
     font-size: 18px;
     color: #002765;
+    font-weight: bold;
+}
+
+.bulk-delete-container {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.bulk-delete-container h4 {
+    color: #002765;
+    margin-bottom: 10px;
 }
 
 #delete-all{
-    background: #edeef0;
-    border: none;
-    font-size: 18px;
-    padding: 10px 15px;
+    background: #ff5945;
+    color: white;
+    font-size: 16px;
+    padding: 12px 30px;
     border-radius: 50px;
     cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
 }
+
 #delete-all:hover{
-    background: #e4e6e8;
+    background: #ff4028;
 }
