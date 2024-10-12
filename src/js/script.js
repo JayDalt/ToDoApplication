@@ -1,5 +1,3 @@
-//TODO Refactor the code to have cleaner methods for basic CRUD functionality
-
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 const totalTasks = document.getElementById("total-tasks-number");
@@ -11,10 +9,19 @@ function AddTask() {
   } else {
     let li = document.createElement("li");
     li.innerHTML = inputBox.value;
-    listContainer.appendChild(li);
+
+    // Create a "Delete" button (existing)
     let span = document.createElement("span");
-    span.innerHTML = "\u00d7";
+    span.innerHTML = "\u00d7"; // X symbol for delete
     li.appendChild(span);
+
+    // Create an "Edit" button (new functionality)
+    let editBtn = document.createElement("button");
+    editBtn.innerHTML = "Edit";
+    editBtn.className = "edit-btn";
+    li.appendChild(editBtn);
+
+    listContainer.appendChild(li);
     updateTaskCount();
   }
   inputBox.value = "";
@@ -24,10 +31,9 @@ function AddTask() {
 // Function to update the total task count
 function updateTaskCount() {
   totalTasks.textContent = listContainer.children.length;
-  
 }
 
-// Checked and Delete Task Functionality
+// Checked, Delete and Edit Task Functionality - 3 Buttons to be clicked
 listContainer.addEventListener(
   "click",
   (e) => {
@@ -38,6 +44,8 @@ listContainer.addEventListener(
       e.target.parentElement.remove();
       saveData();
       updateTaskCount(); // Update the task count after a task is deleted
+    } else if (e.target.classList.contains("edit-btn")) {
+      editTask(e.target.parentElement); // Edit the clicked task
     }
   },
   false
@@ -47,6 +55,18 @@ listContainer.addEventListener(
 function saveData() {
   localStorage.setItem("data", listContainer.innerHTML);
 }
+
+// Edit Task Functionality
+function editTask(taskElement) {
+  const currentTask = taskElement.firstChild.textContent; // Get the current task text
+  const newTaskText = prompt("Edit the task:", currentTask); // Prompt for new task text
+  if (newTaskText && newTaskText.trim()) {
+    taskElement.firstChild.textContent = newTaskText; // Update the task text
+    saveData(); // Save the updated task to localStorage
+  }
+}
+
+ 
 
 // Delete All Tasks Functionality
 function deleteAllTasks() {
