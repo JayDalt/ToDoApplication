@@ -1,11 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
 }
 
-.container{
+.container {
     width: 100%;
     min-height: 100vh;
     background: linear-gradient(135deg, #153677, #4e085f);
@@ -15,7 +15,7 @@
     align-items: center;
 }
 
-.productivfy{    
+.productivfy {
     width: 100%;
     max-width: 540px;
     background: #fff;
@@ -25,7 +25,7 @@
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.productivfy h2{
+.productivfy h2 {
     color: #002765;
     display: flex;
     align-items: center;
@@ -33,12 +33,12 @@
     font-size: 24px;
 }
 
-.productivfy h2 img{
+.productivfy h2 img {
     width: 30px;
     margin-left: 10px;
 }
 
-.row{
+.row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -48,7 +48,7 @@
     margin-bottom: 25px;
 }
 
-input{
+input {
     flex: 1;
     border: none;
     outline: none;
@@ -57,7 +57,7 @@ input{
     font-size: 16px;
 }
 
-button{
+button {
     border: none;
     outline: none;
     padding: 12px 40px;
@@ -74,21 +74,17 @@ button:hover {
 }
 
 ul li {
-    list-style: none;
-    font-size: 17px;
-    padding: 12px 8px 12px 50px;
-    user-select: none;
-    cursor: pointer;
-    position: relative;
+    display: flex;
+    align-items: center;
     background: #f9f9f9;
     border-radius: 15px;
     margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding: 12px 15px;
+    overflow: hidden;
+    position: relative;
 }
 
-ul li::before{
+ul li::before {
     content: '';
     position: absolute;
     height: 28px;
@@ -98,8 +94,8 @@ ul li::before{
     background-size: cover;
     background-position: center;
     top: 50%;
-    left: 8px;
     transform: translateY(-50%);
+    left: 10px;
 }
 
 ul li.checked {
@@ -107,44 +103,71 @@ ul li.checked {
     text-decoration: line-through;
 }
 
-ul li.checked::before{
+ul li.checked::before {
     background-image: url(/src/images/checked.png);
 }
 
-ul li button.edit-btn{
+/* Text section inside each task list item */
+ul li .task-text {
+    flex-grow: 1;
+    margin-right: 10px; /* Space between text and buttons */
+    margin-left: 30px;
+    overflow: hidden; /* Hide overflow */
+    white-space: nowrap; /* Prevent wrapping, so ellipsis works */
+    text-overflow: ellipsis; /* Add ellipsis for truncated text */
+    word-break: break-word; /* Break long words properly */
+    min-width: 0; /* Ensure it shrinks properly within flex */;
+}
+
+/* Buttons container */
+ul li .buttons {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Add space between buttons */
+}
+
+/* Edit button */
+ul li .buttons button {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 14px;
     background: #ff5945;
     color: white;
     border: none;
-    padding: 8px 20px;
-    border-radius: 50px;
     cursor: pointer;
-    font-size: 14px;
     transition: background-color 0.3s ease;
-    margin-right: 10px;
 }
 
-ul li button.edit-btn:hover{
+/* Hover effect for edit button */
+ul li .buttons button.edit-btn:hover {
     background: #ff4028;
 }
 
-ul li span{
+/* Delete button */
+ul li .buttons span {
     font-size: 22px;
     color: #555;
-    padding-right: 10px;
     cursor: pointer;
+    margin-left: 10px;
+    flex-shrink: 0;
 }
 
-ul li span:hover{
+/* Hover effect for delete button */
+ul li .buttons span:hover {
     color: #ff5945;
 }
 
-#total-tasks{
+/* Total tasks section */
+#total-tasks {
     margin-top: 20px;
     font-size: 18px;
     color: #002765;
     font-weight: bold;
 }
 
+/* Bulk delete container */
 .bulk-delete-container {
     margin-top: 30px;
     text-align: center;
@@ -155,7 +178,8 @@ ul li span:hover{
     margin-bottom: 10px;
 }
 
-#delete-all{
+/* Delete all button */
+#delete-all {
     background: #ff5945;
     color: white;
     font-size: 16px;
@@ -166,6 +190,6 @@ ul li span:hover{
     transition: background-color 0.3s ease;
 }
 
-#delete-all:hover{
+#delete-all:hover {
     background: #ff4028;
 }

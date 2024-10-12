@@ -8,18 +8,31 @@ function AddTask() {
     alert("Write something!");
   } else {
     let li = document.createElement("li");
-    li.innerHTML = inputBox.value;
 
-    // Create a "Delete" button (existing)
-    let span = document.createElement("span");
-    span.innerHTML = "\u00d7"; // X symbol for delete
-    li.appendChild(span);
+    // Create a span for the task text and apply the task-text class
+    let taskTextSpan = document.createElement("span");
+    taskTextSpan.textContent = inputBox.value;
+    taskTextSpan.className = "task-text"; // Apply the CSS class to limit text
 
-    // Create an "Edit" button (new functionality)
+    li.appendChild(taskTextSpan);
+
+    // Create the buttons container
+    let buttonsDiv = document.createElement("div");
+    buttonsDiv.className = "buttons"; // Apply the buttons container CSS
+
+    // Create the "Edit" button
     let editBtn = document.createElement("button");
-    editBtn.innerHTML = "Edit";
+    editBtn.textContent = "Edit";
     editBtn.className = "edit-btn";
-    li.appendChild(editBtn);
+    buttonsDiv.appendChild(editBtn);
+
+    // Create the "Delete" button
+    let deleteBtn = document.createElement("span");
+    deleteBtn.textContent = "\u00d7"; // X symbol for delete
+    buttonsDiv.appendChild(deleteBtn);
+
+    // Append the buttons container to the li
+    li.appendChild(buttonsDiv);
 
     listContainer.appendChild(li);
     updateTaskCount();
@@ -33,7 +46,7 @@ function updateTaskCount() {
   totalTasks.textContent = listContainer.children.length;
 }
 
-// Checked, Delete and Edit Task Functionality - 3 Buttons to be clicked
+// Checked, Delete, and Edit Task Functionality
 listContainer.addEventListener(
   "click",
   (e) => {
@@ -41,11 +54,11 @@ listContainer.addEventListener(
       e.target.classList.toggle("checked");
       saveData();
     } else if (e.target.tagName === "SPAN") {
-      e.target.parentElement.remove();
+      e.target.parentElement.parentElement.remove(); // Correct parent removal for button group
       saveData();
       updateTaskCount(); // Update the task count after a task is deleted
     } else if (e.target.classList.contains("edit-btn")) {
-      editTask(e.target.parentElement); // Edit the clicked task
+      editTask(e.target.parentElement.parentElement); // Edit the clicked task
     }
   },
   false
@@ -65,8 +78,6 @@ function editTask(taskElement) {
     saveData(); // Save the updated task to localStorage
   }
 }
-
- 
 
 // Delete All Tasks Functionality
 function deleteAllTasks() {
